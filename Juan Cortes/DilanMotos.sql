@@ -11,12 +11,11 @@ CREATE TABLE usuario (
     CONSTRAINT CHK_Minimo_Caracteres CHECK (char_length(contrasena) >= 6)
 ) ENGINE=InnoDB;
 
--- 2. Tabla marca
+-- 2. Tabla marca (marca de la MOTO)
 CREATE TABLE marca (
-    id_marca INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador de la marca',
+    id_marca INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador de la marca de moto',
     nombre VARCHAR(50)
 ) ENGINE=InnoDB;
-
 
 -- 3. Tabla referencia_motos
 CREATE TABLE referencia_motos (
@@ -46,13 +45,21 @@ CREATE TABLE caracteristicas (
     FOREIGN KEY (id_moto) REFERENCES moto(id_moto)
 ) ENGINE=InnoDB;
 
--- 6. Tabla categoria
+-- 6. Tabla categoria (categoria de PRODUCTO: Aceite, Llanta, Kit de arrastre)
 CREATE TABLE categoria (
     id_categoria INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador de la categoría',
     nombre VARCHAR(50)
 ) ENGINE=InnoDB;
 
--- 7. Tabla productos
+-- 7. Tabla marca_producto (NUEVA: marca del PRODUCTO, ligada a categoria)
+CREATE TABLE marca_producto (
+    id_marca INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador de la marca del producto',
+    nombre VARCHAR(50) NOT NULL,
+    id_categoria INT NOT NULL,
+    FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
+) ENGINE=InnoDB;
+
+-- 8. Tabla productos (ACTUALIZADA: + disponible, id_marca, stock)
 CREATE TABLE productos (
     id_producto INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del producto',
     id_categoria INT,
@@ -60,10 +67,14 @@ CREATE TABLE productos (
     descripcion TEXT,
     precio DECIMAL(10,2),
     imagenUrl VARCHAR(255),
-    FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
+    disponible TINYINT(1) NOT NULL DEFAULT 1,
+    id_marca INT,
+    stock INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria),
+    FOREIGN KEY (id_marca) REFERENCES marca_producto(id_marca)
 ) ENGINE=InnoDB;
 
--- 8. Tabla mecanico
+-- 9. Tabla mecanico
 CREATE TABLE mecanico (
     id_mecanico INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del mecánico',
     nombre VARCHAR(100),
@@ -71,14 +82,14 @@ CREATE TABLE mecanico (
     telefono VARCHAR(20)
 ) ENGINE=InnoDB;
 
--- 9. Tabla tiposervicio
+-- 10. Tabla tiposervicio
 CREATE TABLE tiposervicio (
     id_tipo_servicio INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del tipo de servicio',
     nombre VARCHAR(50),
     descripcion TEXT
 ) ENGINE=InnoDB;
 
--- 10. Tabla servicio
+-- 11. Tabla servicio
 CREATE TABLE servicio (
     id_servicio INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del servicio',
     id_usuario INT,
@@ -94,7 +105,7 @@ CREATE TABLE servicio (
     FOREIGN KEY (id_tipo_servicio) REFERENCES tiposervicio(id_tipo_servicio)
 ) ENGINE=InnoDB;
 
--- 11. Tabla historial
+-- 12. Tabla historial
 CREATE TABLE historial (
     id_historial INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del evento',
     id_usuario INT,
@@ -106,7 +117,7 @@ CREATE TABLE historial (
     FOREIGN KEY (id_servicio) REFERENCES servicio(id_servicio)
 ) ENGINE=InnoDB;
 
--- 12. Tabla pqrs
+-- 13. Tabla pqrs
 CREATE TABLE pqrs (
     id_pqrs INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador de la solicitud PQRS',
     id_usuario INT,
@@ -121,7 +132,7 @@ CREATE TABLE pqrs (
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 ) ENGINE=InnoDB;
 
--- 13. Tabla cotizacion
+-- 14. Tabla cotizacion
 CREATE TABLE cotizacion (
     id_cotizacion INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador de la cotización',
     id_usuario INT,
@@ -132,4 +143,3 @@ CREATE TABLE cotizacion (
     producto_agregado BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 ) ENGINE=InnoDB;
-
