@@ -123,12 +123,15 @@ CREATE TABLE pqrs (
     id_usuario INT,
     tipo VARCHAR(20),
     asunto VARCHAR(100),
-    descripcion TEXT,
+    descripcion VARCHAR(1000) NOT NULL,
     fecha_envio DATE,
     respuesta_admin TEXT,
     fecha_respuesta DATE,
     calificacion_servicio INT CHECK (calificacion_servicio BETWEEN 1 AND 5),
     comentario_usuario TEXT,
+    CONSTRAINT CHK_Minimo_Caracteres CHECK (char_length(comentario_usuario) >= 6),
+    CONSTRAINT CHK_Minimo_Caracteres1 CHECK (char_length(descripcion) >= 6),
+    CONSTRAINT CHK_Minimo_Caracteres2 CHECK (char_length(asunto) >= 6),
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 ) ENGINE=InnoDB;
 
