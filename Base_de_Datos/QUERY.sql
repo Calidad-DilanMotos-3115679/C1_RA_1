@@ -39,23 +39,54 @@ INSERT INTO caracteristicas (id_moto, descripcion) VALUES
 INSERT INTO categoria (nombre) VALUES ('Aceite'), ('Llanta'), ('Kit de arrastre');
 
 -- marca_producto: marcas de PRODUCTO, agrupadas por categoria
--- (1=Aceite, 2=Llanta, 3=Kit de arrastre)
 INSERT INTO marca_producto (nombre, id_categoria) VALUES
-('ProMax', 1), ('Mobil', 1), ('Castrol', 1),
-('Pirelli', 2), ('Michelin', 2), ('Dunlop', 2),
-('RK', 3), ('DID', 3), ('Cassarella', 3);
+-- Marcas originales (IDs 1 al 9)
+('ProMax', 1),
+('Mobil', 1),
+('Castrol', 1),
+('Pirelli', 2),
+('Michelin', 2),
+('Dunlop', 2),
+('RK', 3),
+('DID', 3),
+('Cassarella', 3),
+-- Marcas nuevas de Aceites 
+('Motul', 1),
+('Yamalube', 1),
+('Liqui Moly', 1),
+-- Marcas nuevas de Llantas
+('Metzeler', 2),
+('Continental', 2),
+('IRC', 2),
+-- Marcas nuevas de Kits de Arrastre 
+('Choho', 3),
+('Revo', 3),
+('Riffel', 3);
 
--- productos: ahora con disponible, id_marca y stock
 INSERT INTO productos (id_categoria, nombre, descripcion, precio, imagen_url, disponible, id_marca, stock) VALUES
-(1, 'Aceite - ProMax 10W-40', 'Lubricante sintético para alto rendimiento', 45999, 'https://i.ibb.co/1Gv5jW4J/Aceite-Pro-Max-10-W-40.png', 1, 1, 0),
-(1, 'Aceite - MOBIL Super 2000 10W-40', 'Tecnología semisintética para una protección superior en la conducción diaria', 49990, 'https://i.ibb.co/JTrtXgR/Aceite-MOBIL-Super-2000-10-W-40.png', 1, 2, 0),
-(1, 'Aceite - Castrol Power1 10W-40', 'Lubricante sintético con tecnología de carreras para máxima aceleración', 52900, 'https://i.ibb.co/dw2CMkTp/Aceite-Castrol-Power1-10-W-40.png', 1, 3, 0),
-(2, 'Llanta - Pirelli Angel City', 'Llanta versátil para ciudad y carretera', 195100, 'https://i.ibb.co/yBZxc6wv/Llanta-Pirelli-Angel-City.png', 1, 4, 0),
-(2, 'Llanta - Michelin Pilot Street 2 90/90-18 TL', 'Llanta Sellomatic para motos de baja cilindrada', 235900, 'https://i.ibb.co/chvYJcG4/Llanta-Michelin-Pilot-Street-2-90-90-18-TL.png', 1, 5, 0),
-(2, 'Llanta - Dunlop Sportmax GPR-300', 'Llanta de alto agarre y excelente rendimiento en piso mojado y seco', 245000, 'https://i.ibb.co/k2FSbbSc/Llanta-Dunlop-Sportmax-GPR-300.png', 1, 6, 0),
-(3, 'Kit de arrastre - RK Takasago 14/45', 'Kit reforzado para motos deportivas', 210000, 'https://i.ibb.co/0WS1qYz/Kit-de-arrastre-RK-Takasago-14-45.png', 1, 7, 0),
-(3, 'Kit de arrastre - DID Professional 15/46','kit reforzado para motos',225000, 'https://i.ibb.co/XxgYR1px/Kit-de-arrastre-DID-Professional-15-46.png', 1, 8, 0),
-(3, 'Kit de arrastre - Cassarella Racing 14/42', 'Kit reforzado de alta durabilidad con acero certificado para competencia', 185000, 'https://i.ibb.co/Txjq5Ttc/Kit-de-arrastre-Cassarella-Racing-14-42.png', 1, 9, 0);
+-- ACEITES (id_categoria = 1)
+(1, 'Aceite - ProMax 10W-40', 'Lubricante sintético para alto rendimiento', 45999, 'https://i.ibb.co/1Gv5jW4J/Aceite-Pro-Max-10-W-40.png', 1, 1, 5),
+(1, 'Aceite - MOBIL Super 2000 10W-40', 'Tecnología semisintética para una protección superior en la conducción diaria', 49990, 'https://i.ibb.co/JTrtXgR/Aceite-MOBIL-Super-2000-10-W-40.png', 1, 2, 7),
+(1, 'Aceite - Castrol Power1 10W-40', 'Lubricante sintético con tecnología de carreras para máxima aceleración', 52900, 'https://i.ibb.co/dw2CMkTp/Aceite-Castrol-Power1-10-W-40.png', 1, 3, 8),
+(1, 'Aceite - Motul 7100 4T 10W-40', 'Lubricante 100% sintético con tecnología Ester para motos de alto desempeño', 75000, 'https://i.ibb.co/zHWdXGFY/Aceite-Motul710010-W404-Tiempos-Sintetico4-Litros.webp', 1, 10, 9),
+(1, 'Aceite - Yamalube 4T 20W-50 Mineral', 'Aceite mineral multigrado formulado especialmente para motores Yamaha', 32000, 'https://i.ibb.co/4ZDZkLYM/2.webp', 1, 11, 7),
+(1, 'Aceite - Liqui Moly Street 4T 10W-40', 'Aceite motor de alta tecnología y baja fricción para uso diario', 58000, 'https://i.ibb.co/pj3dCFP9/3.webp', 1, 12, 5),
+
+-- LLANTAS (id_categoria = 2)
+(2, 'Llanta - Pirelli Angel City', 'Llanta versátil para ciudad y carretera', 195100, 'https://i.ibb.co/yBZxc6wv/Llanta-Pirelli-Angel-City.png', 1, 4, 6),
+(2, 'Llanta - Michelin Pilot Street 2 90/90-18 TL', 'Llanta Sellomatic para motos de baja cilindrada', 235900, 'https://i.ibb.co/chvYJcG4/Llanta-Michelin-Pilot-Street-2-90-90-18-TL.png', 1, 5, 7),
+(2, 'Llanta - Dunlop Sportmax GPR-300', 'Llanta de alto agarre y excelente rendimiento en piso mojado y seco', 245000, 'https://i.ibb.co/k2FSbbSc/Llanta-Dunlop-Sportmax-GPR-300.png', 1, 6, 4),
+(2, 'Llanta - Metzeler ME Speed 110/80-17', 'Diseño de labrado optimizado para durabilidad y agarre en mojado', 215000, 'https://i.ibb.co/LDDktf31/1.avif', 1, 13, 3),
+(2, 'Llanta - Continental ContiGo 100/90-18 TT', 'Llanta convencional ideal para motos de trabajo y desplazamiento urbano', 178000, 'https://i.ibb.co/Z6zJWsBn/Pneus-Moto-Continental-100-90-R18-56-V-CONTIROADATTACK-3.webp', 1, 14, 4),
+(2, 'Llanta - IRC NR77 90/90-17 TL', 'Llanta económica de excelente agarre para motos urbanas', 145000, 'https://i.ibb.co/60Q4Hx83/17600862497809754.webp', 1, 15, 6),
+
+-- KITS DE ARRASTRE (id_categoria = 3)
+(3, 'Kit de arrastre - RK Takasago 14/45', 'Kit reforzado para motos deportivas', 210000, 'https://i.ibb.co/0WS1qYz/Kit-de-arrastre-RK-Takasago-14-45.png', 1, 7, 2),
+(3, 'Kit de arrastre - DID Professional 15/46', 'Kit reforzado para motos', 225000, 'https://i.ibb.co/XxgYR1px/Kit-de-arrastre-DID-Professional-15-46.png', 1, 8, 6),
+(3, 'Kit de arrastre - Cassarella Racing 14/42', 'Kit reforzado de alta durabilidad con acero certificado para competencia', 185000, 'https://i.ibb.co/Txjq5Ttc/Kit-de-arrastre-Cassarella-Racing-14-42.png', 1, 9, 6),
+(3, 'Kit de arrastre - Choho O-Ring 14/43', 'Kit con cadena O-Ring de máxima retención de lubricante y bajo mantenimiento', 165000, 'https://i.ibb.co/HJKKdJS/images.jpg', 1, 16, 6),
+(3, 'Kit de arrastre - Revo Carbono 15/45', 'Kit reforzado paso 428 H fabricado en acero de alta resistencia', 135000, 'https://i.ibb.co/b5xTTx9G/D-NQ-NP-918669-MLA107538490580-032026-O.webp', 1, 17, 8),
+(3, 'Kit de arrastre - Riffel Titanium 14/44', 'Relación reforzada con cadena dorada premium para alta exigencia', 198000, 'https://i.ibb.co/B2Tbnz21/images.jpg', 1, 18, 8);
 
 INSERT INTO mecanico (nombre, especialidad, telefono) VALUES
 ('Juan Perez','Mantenimiento general','3136405768'),
